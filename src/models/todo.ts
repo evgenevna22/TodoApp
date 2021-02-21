@@ -8,4 +8,5 @@ export interface Todo {
   id: number;
   isImportant: boolean;
   isCompleted: boolean;
+  onDelete?: () => void;
 }

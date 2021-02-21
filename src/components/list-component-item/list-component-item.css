@@ -4,6 +4,15 @@
   align-items: center;
 }
 
+.todo-list-item__text.important {
+  color: green;
+  font-weight: 700;
+}
+
+.todo-list-item__text.completed {
+  text-decoration: line-through;
+}
+
 .todo-list-item--important {
   font-weight: 700;
   color: steelblue;

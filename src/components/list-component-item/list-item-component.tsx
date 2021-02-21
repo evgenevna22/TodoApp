@@ -5,22 +5,31 @@ import './list-component-item.css';
 import { Todo } from '../../models/todo';
 import { throws } from 'assert';
 
-export default class ListItemComponent extends Component<Todo> {
+interface State {
+  isImportant: boolean;
+  isCompleted: boolean;
+}
 
-  state = {
+export default class ListItemComponent extends Component<Todo, State> {
+
+  state: State = {
     isImportant: false,
     isCompleted: false
   };
 
   onComplete = () => {
-    this.setState({
-      isCompleted: true
+    this.setState(({isCompleted}) => {
+      return {
+        isCompleted: !isCompleted
+      }
     });
   }
 
-  setImportant = () => {
-    this.setState({
-      isImportant: true
+  setImportantState = () => {
+    this.setState(({isImportant}) => {
+      return {
+        isImportant: !isImportant
+      }
     });
   }
 
@@ -32,20 +41,20 @@ export default class ListItemComponent extends Component<Todo> {
   }
 
   render() {
-    const { label }: Todo = this.props;
+    const { label, onDelete }: Todo = this.props;
 
     return (
       <p className="todo-list-item">
-        <span className={this.getClassNames()} onClick={this.onComplete}>
+        <span className={"todo-list-item__text" + this.getClassNames()} onClick={this.onComplete}>
           {label}
         </span>
 
-        <span className="todo-list-item__actions">
+        <span className="todo-list-item__actions" onClick={onDelete}>
           <button className="todo-list-item__btn btn btn-outline-danger btn-sm">
             <i className="fa fa-trash-o"></i>
           </button>
 
-          <button className="todo-list-item__btn btn btn-outline-success btn-sm" onClick={this.setImportant}>
+          <button className="todo-list-item__btn btn btn-outline-success btn-sm" onClick={this.setImportantState}>
             <i className="fa fa-exclamation"></i>
           </button>
         </span>
