@@ -1,0 +1,19 @@
+.todo-list-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.todo-list-item--important {
+  font-weight: 700;
+  color: steelblue;
+}
+
+.todo-list-item__actions {
+  margin-left: auto;
+
+}
+
+.todo-list-item__btn:not(:last-of-type) {
+  margin-right: 10px;
+}
